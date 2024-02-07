@@ -1,0 +1,6 @@
+{
+  "userId": "${post.userId}",
+  "id": "type:Integer",
+  "title": "${post.text}",
+  "body": "${post.body}"
+}
