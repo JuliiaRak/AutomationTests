@@ -6,17 +6,17 @@ import com.solvd.apiAutomation.domain.Post;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import org.testng.annotations.Test;
 
-public class PostTests {
+public class ApiPostTests {
 
     @Test
-    public void verifyGetPostById() {
+    public void verifyGetPostByIdCorrectTest() {
         Post post = new Post();
         post.setId(3);
         post.setUserId(1);
         post.setTitle("ea molestias quasi exercitationem repellat qui ipsa sit aut");
         post.setBody("et iusto sed quo iure\\nvoluptatem occaecati omnis eligendi aut ad\\nvoluptatem doloribus vel accusantium quis pariatur\\nmolestiae porro eius odio et labore et velit aut");
 
-        GetPostById getPostById = new GetPostById(post.getId());
+        GetPostByIdMethod getPostById = new GetPostByIdMethod(post.getId());
         getPostById.addProperty("post", post);
 
         getPostById.expectResponseStatus(HttpResponseStatusType.OK_200);
@@ -25,38 +25,38 @@ public class PostTests {
     }
 
     @Test
-    public void verifyGetPostByIdNotFound() {
+    public void verifyGetPostByIdInCorrectTest() {
         Post post = new Post();
         post.setId(101);
 
-        GetPostById getPostById = new GetPostById(post.getId());
+        GetPostByIdMethod getPostById = new GetPostByIdMethod(post.getId());
 
         getPostById.expectResponseStatus(HttpResponseStatusType.NOT_FOUND_404);
         getPostById.callAPI();
     }
 
     @Test
-    public void verifyCreatePost() {
+    public void verifyCreatePostTest() {
         Post post = new Post();
         post.setTitle("New post");
         post.setBody("It is my first post");
         post.setUserId(1);
 
-        CreatePost createPost = new CreatePost();
+        CreatePostMethod createPost = new CreatePostMethod();
         createPost.addProperty("post", post);
 
         createPost.callAPIExpectSuccess();
     }
 
     @Test
-    public void verifyCreatePostWithMapper() {
+    public void verifyCreatePostWithMapperTest() {
         Post post = new Post();
         post.setTitle("New post");
         post.setBody("It is my first post");
         post.setUserId(1);
 
         try {
-            CreatePostWithMapper createPostWithMapper = new CreatePostWithMapper(post);
+            CreatePostMethodWithMapper createPostWithMapper = new CreatePostMethodWithMapper(post);
             createPostWithMapper.expectResponseStatus(HttpResponseStatusType.CREATED_201);
             createPostWithMapper.callAPI();
         } catch (JsonProcessingException e) {
@@ -65,25 +65,25 @@ public class PostTests {
     }
 
     @Test
-    public void verifyUpdatePost() {
+    public void verifyUpdatePostTest() {
         Post post = new Post();
         post.setId(1);
         post.setTitle("New post updated");
         post.setBody("It is my updated post");
         post.setUserId(1);
 
-        UpdatePost updatePost = new UpdatePost(post.getId());
+        UpdatePostMethod updatePost = new UpdatePostMethod(post.getId());
         updatePost.addProperty("post", post);
 
         updatePost.callAPIExpectSuccess();
     }
 
     @Test
-    public void verifyDeletePost() {
+    public void verifyDeletePostTest() {
         Post post = new Post();
         post.setId(3);
 
-        DeletePost deletePost = new DeletePost(post.getId());
+        DeletePostMethod deletePost = new DeletePostMethod(post.getId());
 
         deletePost.expectResponseStatus(HttpResponseStatusType.OK_200);
         deletePost.callAPI();
