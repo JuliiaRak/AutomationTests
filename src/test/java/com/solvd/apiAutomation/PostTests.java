@@ -1,9 +1,7 @@
 package com.solvd.apiAutomation;
 
-import com.solvd.apiAutomation.api.CreatePost;
-import com.solvd.apiAutomation.api.DeletePost;
-import com.solvd.apiAutomation.api.GetPostById;
-import com.solvd.apiAutomation.api.UpdatePost;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.solvd.apiAutomation.api.*;
 import com.solvd.apiAutomation.domain.Post;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import org.testng.annotations.Test;
@@ -44,6 +42,22 @@ public class PostTests {
 
         createPost.expectResponseStatus(HttpResponseStatusType.CREATED_201);
         createPost.callAPI();
+    }
+
+    @Test
+    public void verifyCreatePostWithMapper() {
+        Post post = new Post();
+        post.setTitle("New post");
+        post.setBody("It is my first post");
+        post.setUserId(1);
+
+        try {
+            CreatePostWithMapper createPostWithMapper = new CreatePostWithMapper(post);
+            createPostWithMapper.expectResponseStatus(HttpResponseStatusType.CREATED_201);
+            createPostWithMapper.callAPI();
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test
