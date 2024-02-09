@@ -1,5 +1,5 @@
 {
   "title": "${post.title}",
   "body": "${post.body}",
-  "userId": "${post.userId}"
+  "userId": ${post.userId}
 }

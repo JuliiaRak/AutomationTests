@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class ApiPostTests {
 
     @Test
-    public void verifyGetPostByIdCorrectTest() {
+    public void verifyGetExactPostByIdCorrectTest() {
         Post post = new Post();
         post.setId(3);
         post.setUserId(1);
@@ -19,7 +19,6 @@ public class ApiPostTests {
         GetPostByIdMethod getPostById = new GetPostByIdMethod(post.getId());
         getPostById.addProperty("post", post);
 
-        getPostById.expectResponseStatus(HttpResponseStatusType.OK_200);
         getPostById.callAPIExpectSuccess();
         getPostById.validateResponse();
     }
@@ -46,19 +45,21 @@ public class ApiPostTests {
         createPost.addProperty("post", post);
 
         createPost.callAPIExpectSuccess();
+        createPost.validateResponse();
     }
 
     @Test
     public void verifyCreatePostWithMapperTest() {
-        Post post = new Post();
-        post.setTitle("New post");
-        post.setBody("It is my first post");
-        post.setUserId(1);
-
         try {
+            Post post = new Post();
+            post.setTitle("New post");
+            post.setBody("It is my first post");
+            post.setUserId(1);
             CreatePostMethodWithMapper createPostWithMapper = new CreatePostMethodWithMapper(post);
-            createPostWithMapper.expectResponseStatus(HttpResponseStatusType.CREATED_201);
-            createPostWithMapper.callAPI();
+            createPostWithMapper.callAPIExpectSuccess();
+
+            createPostWithMapper.addProperty("post", post);
+            createPostWithMapper.validateResponse();
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -76,6 +77,7 @@ public class ApiPostTests {
         updatePost.addProperty("post", post);
 
         updatePost.callAPIExpectSuccess();
+        updatePost.validateResponse();
     }
 
     @Test
@@ -84,8 +86,6 @@ public class ApiPostTests {
         post.setId(3);
 
         DeletePostMethod deletePost = new DeletePostMethod(post.getId());
-
-        deletePost.expectResponseStatus(HttpResponseStatusType.OK_200);
-        deletePost.callAPI();
+        deletePost.callAPIExpectSuccess();
     }
 }
