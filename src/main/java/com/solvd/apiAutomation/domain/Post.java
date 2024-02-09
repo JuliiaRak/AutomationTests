@@ -1,24 +1,24 @@
 package com.solvd.apiAutomation.domain;
 
 public class Post {
-    private int userId;
-    private int id;
+    private Integer userId;
+    private Integer id;
     private String title;
     private String body;
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

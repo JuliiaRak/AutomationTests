@@ -12,11 +12,16 @@ public class PostTests {
     public void verifyGetPostById() {
         Post post = new Post();
         post.setId(3);
+        post.setUserId(1);
+        post.setTitle("ea molestias quasi exercitationem repellat qui ipsa sit aut");
+        post.setBody("et iusto sed quo iure\\nvoluptatem occaecati omnis eligendi aut ad\\nvoluptatem doloribus vel accusantium quis pariatur\\nmolestiae porro eius odio et labore et velit aut");
 
         GetPostById getPostById = new GetPostById(post.getId());
+        getPostById.addProperty("post", post);
 
         getPostById.expectResponseStatus(HttpResponseStatusType.OK_200);
-        getPostById.callAPI();
+        getPostById.callAPIExpectSuccess();
+        getPostById.validateResponse();
     }
 
     @Test
@@ -40,8 +45,7 @@ public class PostTests {
         CreatePost createPost = new CreatePost();
         createPost.addProperty("post", post);
 
-        createPost.expectResponseStatus(HttpResponseStatusType.CREATED_201);
-        createPost.callAPI();
+        createPost.callAPIExpectSuccess();
     }
 
     @Test
@@ -71,8 +75,7 @@ public class PostTests {
         UpdatePost updatePost = new UpdatePost(post.getId());
         updatePost.addProperty("post", post);
 
-        updatePost.expectResponseStatus(HttpResponseStatusType.OK_200);
-        updatePost.callAPI();
+        updatePost.callAPIExpectSuccess();
     }
 
     @Test
