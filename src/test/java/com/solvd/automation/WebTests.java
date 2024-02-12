@@ -1,10 +1,7 @@
 package com.solvd.automation;
 
 import com.solvd.automation.web.components.ProductCardComponent;
-import com.solvd.automation.web.pages.AllShopsAddressesPage;
-import com.solvd.automation.web.pages.HomePage;
-import com.solvd.automation.web.pages.MapPage;
-import com.solvd.automation.web.pages.SearchResultsPage;
+import com.solvd.automation.web.pages.*;
 import com.zebrunner.carina.core.AbstractTest;
 import com.zebrunner.carina.utils.R;
 import org.testng.Assert;
@@ -14,7 +11,7 @@ import java.util.List;
 
 public class WebTests extends AbstractTest {
 
-    private static final String USER_NAME = R.TESTDATA.get("userName");
+    private static final String EMAIL = R.TESTDATA.get("email");
 
     private static final String PASSWORD = R.TESTDATA.get("password");
 
@@ -48,6 +45,22 @@ public class WebTests extends AbstractTest {
 
         AllShopsAddressesPage allShopsAddressesPage = mapPage.clickAllShopsButton();
         Assert.assertTrue(allShopsAddressesPage.isPageOpened(), "Page with all shops addresses is not opened");
+    }
+
+    @Test
+    public void verifyUnregisteredEmailLogInAttempt() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+
+        LogInPage logInPage = homePage.clickLogInButton();
+        Assert.assertTrue(logInPage.isPageOpened(), "LogIn page is not opened");
+
+//        logInPage.enterEmail(EMAIL);
+//        logInPage.enterPassword(PASSWORD);
+//        logInPage.clickLogInButton();
+//
+//        Assert.assertEquals(logInPage.getErrorMessage(), "Неправильний логін або пароль", "Message with informing about an incorrect login or password did not appear");
     }
 
 }

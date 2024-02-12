@@ -19,6 +19,9 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//a[@title='Магазини']")
     private ExtendedWebElement shopsButton;
 
+    @FindBy(css = ".header__login__icon")
+    private ExtendedWebElement logInButton;
+
     public HomePage(WebDriver driver) {
         super(driver);
         setUiLoadedMarker(logo);
@@ -36,5 +39,10 @@ public class HomePage extends AbstractPage {
     public MapPage clickShopsButton(){
         shopsButton.click();
         return new MapPage(getDriver());
+    }
+
+    public LogInPage clickLogInButton(){
+        logInButton.click();
+        return new LogInPage(getDriver());
     }
 }
