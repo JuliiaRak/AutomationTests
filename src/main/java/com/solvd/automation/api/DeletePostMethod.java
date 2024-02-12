@@ -1,4 +1,4 @@
-package com.solvd.apiAutomation.api;
+package com.solvd.automation.api;
 
 import com.zebrunner.carina.api.AbstractApiMethodV2;
 import com.zebrunner.carina.api.annotation.Endpoint;

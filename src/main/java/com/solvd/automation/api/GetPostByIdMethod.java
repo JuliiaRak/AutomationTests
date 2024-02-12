@@ -1,20 +1,19 @@
-package com.solvd.apiAutomation.api;
+package com.solvd.automation.api;
 
 import com.zebrunner.carina.api.AbstractApiMethodV2;
 import com.zebrunner.carina.api.annotation.Endpoint;
-import com.zebrunner.carina.api.annotation.RequestTemplatePath;
 import com.zebrunner.carina.api.annotation.ResponseTemplatePath;
 import com.zebrunner.carina.api.annotation.SuccessfulHttpStatus;
 import com.zebrunner.carina.api.apitools.builder.NotStringValuesProcessor;
 import com.zebrunner.carina.api.http.HttpMethodType;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
 
-@Endpoint(url = "${config.api_url}/posts", methodType = HttpMethodType.POST)
-@SuccessfulHttpStatus(status = HttpResponseStatusType.CREATED_201)
-@RequestTemplatePath(path = "api/posts/create_post_rq.json")
-@ResponseTemplatePath(path = "api/posts/create_post_rs.json")
-public class CreatePostMethod extends AbstractApiMethodV2 {
-    public CreatePostMethod() {
+@Endpoint(url = "${config.api_url}/posts/${post_id}", methodType = HttpMethodType.GET)
+@SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
+@ResponseTemplatePath(path = "api/posts/get_post_rs.json")
+public class GetPostByIdMethod extends AbstractApiMethodV2 {
+    public GetPostByIdMethod(int postId) {
+        replaceUrlPlaceholder("post_id", String.valueOf(postId));
         ignorePropertiesProcessor(NotStringValuesProcessor.class);
     }
 }

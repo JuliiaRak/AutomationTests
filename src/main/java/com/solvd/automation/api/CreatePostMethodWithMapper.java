@@ -1,8 +1,8 @@
-package com.solvd.apiAutomation.api;
+package com.solvd.automation.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.solvd.apiAutomation.domain.Post;
+import com.solvd.automation.domain.Post;
 import com.zebrunner.carina.api.AbstractApiMethodV2;
 import com.zebrunner.carina.api.annotation.Endpoint;
 import com.zebrunner.carina.api.annotation.ResponseTemplatePath;
