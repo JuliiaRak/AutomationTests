@@ -1,4 +1,4 @@
-package com.solvd.automation.api;
+package com.solvd.automation.api.methods;
 
 import com.zebrunner.carina.api.AbstractApiMethodV2;
 import com.zebrunner.carina.api.annotation.Endpoint;
@@ -9,12 +9,13 @@ import com.zebrunner.carina.api.apitools.builder.NotStringValuesProcessor;
 import com.zebrunner.carina.api.http.HttpMethodType;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
 
-@Endpoint(url = "${config.api_url}/posts", methodType = HttpMethodType.POST)
-@SuccessfulHttpStatus(status = HttpResponseStatusType.CREATED_201)
-@RequestTemplatePath(path = "api/posts/create_post_rq.json")
-@ResponseTemplatePath(path = "api/posts/create_post_rs.json")
-public class CreatePostMethod extends AbstractApiMethodV2 {
-    public CreatePostMethod() {
+@Endpoint(url = "${config.api_url}/posts/${post_id}", methodType = HttpMethodType.PUT)
+@SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
+@RequestTemplatePath(path = "api/posts/update_post_rq.json")
+@ResponseTemplatePath(path = "api/posts/update_post_rs.json")
+public class UpdatePostMethod extends AbstractApiMethodV2 {
+    public UpdatePostMethod(int postId) {
+        replaceUrlPlaceholder("post_id", String.valueOf(postId));
         ignorePropertiesProcessor(NotStringValuesProcessor.class);
     }
 }

@@ -1,8 +1,8 @@
 package com.solvd.automation;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.solvd.automation.api.*;
-import com.solvd.automation.domain.Post;
+import com.solvd.automation.api.domain.Post;
+import com.solvd.automation.api.methods.*;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import org.testng.annotations.Test;
 
