@@ -1,7 +1,6 @@
 package com.solvd.automation.web.pages;
 
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -17,6 +16,9 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//watson-font-icon[@class='search']")
     private ExtendedWebElement searchButton;
 
+    @FindBy(xpath = "//a[@title='Магазини']")
+    private ExtendedWebElement shopsButton;
+
     public HomePage(WebDriver driver) {
         super(driver);
         setUiLoadedMarker(logo);
@@ -29,5 +31,10 @@ public class HomePage extends AbstractPage {
     public SearchResultsPage clickSearchButton(){
         searchButton.click();
         return new SearchResultsPage(getDriver());
+    }
+
+    public MapPage clickShopsButton(){
+        shopsButton.click();
+        return new MapPage(getDriver());
     }
 }

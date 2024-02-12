@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class ProductCardComponent extends AbstractUIObject {
 
-    @FindBy(xpath = ".//p[contains(@class, 'product-tile__product-name-link__description-overflow')]")
+    @FindBy(xpath = " .//div[@class='product-tile__product-name']//p")
     private ExtendedWebElement productTitle;
 
     public ProductCardComponent(WebDriver driver, SearchContext searchContext) {
