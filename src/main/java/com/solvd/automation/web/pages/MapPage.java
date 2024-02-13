@@ -11,7 +11,7 @@ public class MapPage extends AbstractPage {
     @FindBy(xpath = "//h1[text()='Карта магазинiв']")
     private ExtendedWebElement title;
 
-    @FindBy(xpath = "//div[contains(@class, 'store-locator-search__form-input--right')]//a[contains(@class, 'store-locator-search__form-input-link')]")
+    @FindBy(xpath = "//div[contains(@class, 'store-locator-search__form-input--right')]//a[contains(text(), 'Всі магазини')]]")
     private ExtendedWebElement allShopsButton;
 
     public MapPage(WebDriver driver) {
