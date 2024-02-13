@@ -4,7 +4,6 @@ import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class MapPage extends AbstractPage {
@@ -21,7 +20,7 @@ public class MapPage extends AbstractPage {
     }
 
     public AllShopsAddressesPage clickAllShopsButton(){
-        waitUntil(ExpectedConditions.visibilityOf(allShopsButton.getElement()), 10);
+        waitUntil(ExpectedConditions.visibilityOf(allShopsButton.getElement()), 20);
         allShopsButton.click();
         return new AllShopsAddressesPage(getDriver());
     }

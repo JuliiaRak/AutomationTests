@@ -1,5 +1,6 @@
 package com.solvd.automation.web.pages;
 
+import com.solvd.automation.web.components.HeaderComponent;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
@@ -16,11 +17,8 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//watson-font-icon[@class='search']")
     private ExtendedWebElement searchButton;
 
-    @FindBy(xpath = "//a[@title='Магазини']")
-    private ExtendedWebElement shopsButton;
-
-    @FindBy(css = ".header__login__icon")
-    private ExtendedWebElement logInButton;
+    @FindBy(xpath = "//header")
+    private HeaderComponent header;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -36,13 +34,7 @@ public class HomePage extends AbstractPage {
         return new SearchResultsPage(getDriver());
     }
 
-    public MapPage clickShopsButton(){
-        shopsButton.click();
-        return new MapPage(getDriver());
-    }
-
-    public LogInPage clickLogInButton(){
-        logInButton.click();
-        return new LogInPage(getDriver());
+    public HeaderComponent getHeader() {
+        return header;
     }
 }

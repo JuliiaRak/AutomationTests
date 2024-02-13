@@ -36,11 +36,12 @@ public class LogInPage extends AbstractPage {
         passwordField.type(password);
     }
 
-    public void clickLogInButton(){
-        logInButton.click();
+    public boolean clickLogInButtonIfPresent(){
+        return logInButton.clickIfPresent();
     }
 
     public String getErrorMessage() {
         return errorMessage.getText();
     }
+
 }

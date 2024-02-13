@@ -40,7 +40,7 @@ public class WebTests extends AbstractTest {
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
 
-        MapPage mapPage = homePage.clickShopsButton();
+        MapPage mapPage = homePage.getHeader().clickShopsButton();
         Assert.assertTrue(mapPage.isPageOpened(), "Page with shops map is not opened");
 
         AllShopsAddressesPage allShopsAddressesPage = mapPage.clickAllShopsButton();
@@ -53,14 +53,16 @@ public class WebTests extends AbstractTest {
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
 
-        LogInPage logInPage = homePage.clickLogInButton();
+        LogInPage logInPage = homePage.getHeader().clickLogInButton();
         Assert.assertTrue(logInPage.isPageOpened(), "LogIn page is not opened");
 
-//        logInPage.enterEmail(EMAIL);
-//        logInPage.enterPassword(PASSWORD);
-//        logInPage.clickLogInButton();
-//
-//        Assert.assertEquals(logInPage.getErrorMessage(), "Неправильний логін або пароль", "Message with informing about an incorrect login or password did not appear");
+        //logInPage.enterEmail(EMAIL);
+        logInPage.enterPassword(PASSWORD);
+        String oldUrl = getDriver().getCurrentUrl();
+        Assert.assertTrue(logInPage.clickLogInButtonIfPresent(), "Login button can not be clicked");
+        Assert.assertNotEquals(getDriver().getCurrentUrl(), oldUrl, "Url did not changed");
     }
+
+
 
 }
