@@ -1,4 +1,4 @@
-package com.solvd.automation.domain;
+package com.solvd.automation.api.domain;
 
 public class Post {
     private Integer userId;
